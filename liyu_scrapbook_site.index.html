@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#dce9ff">
+<title>dear, LIYU — a little scrapbook</title>
+<style>
+  :root{
+    --paper:#fffdf7; --ink:#30384d; --blue:#dce9ff; --blue2:#a9c7f5;
+    --pink:#f8dce8; --yellow:#fff0b8; --lilac:#e9e0ff; --line:#d8d8df;
+    --shadow:0 12px 30px rgba(57,70,105,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;color:var(--ink);font-family:"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    background-color:#edf2ff;
+    background-image:radial-gradient(#b8c9ef 1px,transparent 1px);
+    background-size:19px 19px;
+  }
+  button,input,textarea{font:inherit}
+  button{cursor:pointer}
+  a{color:inherit}
+  .wrap{width:min(1050px,calc(100% - 28px));margin:24px auto 60px}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;font-size:.82rem;letter-spacing:.08em}
+  .pill{border:1px solid #c6d5f2;border-radius:999px;padding:7px 12px;background:#ffffffb8}
+  .paper{background:var(--paper);border:1px solid #fff;border-radius:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hero{padding:clamp(26px,6vw,68px);background:linear-gradient(135deg,#fffdf7 0%,#fffdf7 55%,#f1eaff 100%)}
+  .tape{position:absolute;width:104px;height:26px;background:#f5d4e2bb;top:17px;left:calc(50% - 52px);transform:rotate(-4deg);box-shadow:0 2px 4px #0000000a}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#7386ac}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(3rem,9vw,6.8rem);line-height:.92;letter-spacing:-.065em;margin:18px 0 16px}
+  h1 span{display:block;color:#789bd5;font-style:italic}
+  .intro{max-width:430px;line-height:1.8;color:#68718a}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .btn{border:0;border-radius:999px;padding:11px 17px;background:var(--ink);color:white;box-shadow:0 4px 0 #1c2538;font-weight:650}
+  .btn.secondary{background:white;color:var(--ink);border:1px solid #d8deeb;box-shadow:0 4px 0 #e4e6ec}
+  .polaroid{background:#fff;padding:12px 12px 42px;box-shadow:0 10px 24px #697ba82b;transform:rotate(4deg);max-width:300px;margin:auto;position:relative}
+  .photo-placeholder{aspect-ratio:4/5;background:linear-gradient(145deg,#bcd4ff,#e8dfff 55%,#f8dce8);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#536b9a;position:relative;overflow:hidden}
+  .photo-placeholder:before,.photo-placeholder:after{content:"✦";position:absolute;color:#fff9;font-size:3rem}
+  .photo-placeholder:before{top:12%;left:12%}.photo-placeholder:after{bottom:10%;right:13%;font-size:2rem}
+  .polaroid figcaption{text-align:center;font-family:Georgia,serif;font-style:italic;margin-top:12px;color:#6d7590}
+  .hero-star{position:absolute;font-size:2rem;color:#e9c65b;right:8%;top:13%;transform:rotate(14deg)}
+  .section{margin-top:22px;padding:clamp(22px,4vw,38px)}
+  .section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:22px}
+  .section h2{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:500;margin:5px 0}
+  .small{font-size:.85rem;color:#79829a;line-height:1.6}
+  .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .count-box{background:#f0f4ff;border:1px dashed #b7c9ec;border-radius:16px;text-align:center;padding:18px 8px}
+  .count-box strong{display:block;font-size:clamp(1.5rem,4vw,2.4rem);font-family:Georgia,serif;font-weight:500}
+  .count-box span{font-size:.75rem;color:#7b86a1}
+  .timeline{position:relative;margin:14px 0 0 8px;padding-left:24px;border-left:2px dashed #b8c9ec}
+  .event{position:relative;padding:0 0 24px 10px}
+  .event:last-child{padding-bottom:0}
+  .event:before{content:"✦";position:absolute;left:-34px;top:0;color:#7798d4;background:var(--paper);padding:0 4px}
+  .event time{font-size:.75rem;letter-spacing:.08em;color:#8393b4}
+  .event h3{margin:5px 0;font-size:1rem}
+  .event p{margin:0;color:#7b8297;font-size:.9rem;line-height:1.65}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .wish-area{background:#f0f4ff;border-radius:18px;padding:18px}
+  label{display:block;font-size:.83rem;color:#697794;margin:12px 0 6px}
+  input,textarea{width:100%;border:1px solid #d7dfef;background:#fff;border-radius:12px;padding:11px 12px;color:var(--ink);outline:none}
+  input:focus,textarea:focus{border-color:#8aa8e0;box-shadow:0 0 0 3px #dce9ff}
+  textarea{min-height:88px;resize:vertical}
+  .wish-list{display:grid;gap:10px;margin-top:16px}
+  .wish-card{padding:14px;border-radius:14px;background:#fff;border:1px solid #e7eaf1;position:relative}
+  .wish-card:after{content:"✦";position:absolute;right:12px;top:10px;color:#e2c15a}
+  .wish-card strong{font-size:.84rem}.wish-card p{margin:7px 0 0;line-height:1.6;white-space:pre-wrap}
+  .letter{padding:22px;background:#fff8e6;border:1px solid #f2e5c6;border-radius:6px 18px 6px 18px;position:relative}
+  .letter:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:#f4dba0}
+  .letter .letter-title{font-family:Georgia,serif;font-size:1.5rem;font-style:italic}
+  .letter p{line-height:1.9;color:#656b7d;white-space:pre-line}
+  .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .mini-polaroid{padding:9px 9px 30px;background:#fff;box-shadow:0 5px 14px #4e60851c;transform:rotate(var(--r));}
+  .mini-photo{aspect-ratio:4/5;background:linear-gradient(140deg,var(--c1),var(--c2));display:flex;align-items:center;justify-content:center;text-align:center;color:#536b9a;padding:12px;font-family:Georgia,serif}
+  .mini-polaroid figcaption{font-size:.78rem;text-align:center;margin-top:10px;color:#7c8293}
+  .upload-note{margin-top:14px;padding:12px;background:#f7f3ff;border-radius:12px;font-size:.83rem;color:#73708c;line-height:1.6}
+  .footer{text-align:center;padding:28px 10px;color:#8992a9;font-size:.8rem;line-height:1.8}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:#30384d;color:#fff;padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:90%;text-align:center}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .sparkle{position:fixed;pointer-events:none;z-index:9;animation:float 900ms ease-out forwards;color:#d6ad39}
+  @keyframes float{from{opacity:1;transform:translateY(0) scale(.7) rotate(0)}to{opacity:0;transform:translateY(-55px) scale(1.5) rotate(40deg)}}
+  @media(max-width:700px){
+    .wrap{width:min(100% - 18px,560px);margin-top:12px}
+    .hero-grid,.grid-2{grid-template-columns:1fr}
+    .hero-grid{gap:24px}.polaroid{max-width:235px}
+    .hero-star{right:9%;top:5%}
+    .countdown{gap:6px}.count-box{padding:14px 4px}
+    .photo-grid{gap:8px}.mini-polaroid{padding:6px 6px 22px}
+    .mini-polaroid figcaption{font-size:.68rem}
+    .section-head{align-items:start;flex-direction:column}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><span>✦ LITTLE MEMORY ARCHIVE</span><span class="pill">NO. 001 · FOR LIYU</span></div>
+
+  <header class="paper hero" id="home">
+    <div class="tape"></div><div class="hero-star">✧</div>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">a scrapbook made with love</div>
+        <h1>dear, <span>LIYU</span></h1>
+        <p class="intro">작은 별 하나에 마음을 담아, 오래 기억하고 싶은 순간들을 모았어요. 이 페이지는 당신을 응원하는 마음으로 만든 작은 스크랩북입니다.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#wish" style="text-decoration:none">별에게 소원 빌기 ✦</a>
+          <a class="btn secondary" href="#memories" style="text-decoration:none">기억 펼쳐 보기</a>
+        </div>
+      </div>
+      <figure class="polaroid">
+        <div class="photo-placeholder" id="coverPhoto">여기에 LIYU의<br>사진을 넣어 주세요 ♡</div>
+        <figcaption>you make ordinary days shine.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <section class="paper section" id="countdown">
+    <div class="section-head"><div><div class="eyebrow">save the date</div><h2>A day for you</h2></div><p class="small">생일 날짜를 설정하면 카운트다운이 시작돼요.</p></div>
+    <div class="countdown" aria-live="polite">
+      <div class="count-box"><strong id="days">—</strong><span>DAYS</span></div>
+      <div class="count-box"><strong id="hours">—</strong><span>HOURS</span></div>
+      <div class="count-box"><strong id="minutes">—</strong><span>MINUTES</span></div>
+      <div class="count-box"><strong id="seconds">—</strong><span>SECONDS</span></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:18px">
+      <div style="flex:1;min-width:180px"><label for="birthday">LIYU의 다음 생일 날짜</label><input id="birthday" type="date" value="2027-01-02"></div>
+      <button class="btn secondary" id="saveBirthday" type="button">날짜 적용</button>
+    </div>
+    <p class="small" id="countdownMessage" style="margin-bottom:0">기본 날짜는 예시예요. 정확한 날짜로 수정해 주세요.</p>
+  </section>
+
+  <section class="paper section" id="timeline">
+    <div class="section-head"><div><div class="eyebrow">little by little</div><h2>Our timeline</h2></div><span class="pill">moments to remember</span></div>
+    <div class="timeline">
+      <article class="event"><time>THE BEGINNING</time><h3>처음 마음을 전한 날</h3><p>응원하기로 마음먹은 순간이나 처음 만난 날을 적어 보세요.</p></article>
+      <article class="event"><time>A SPECIAL DAY</time><h3>오래 간직하고 싶은 순간</h3><p>기억하고 싶은 무대, 말, 사진 또는 팬 프로젝트의 날을 기록해요.</p></article>
+      <article class="event"><time>COMING SOON</time><h3>앞으로 함께 만들 이야기</h3><p>다음 생일과 앞으로의 응원 계획을 적어 두세요.</p></article>
+    </div>
+    <p class="upload-note">타임라인 문구는 코드에서 <code>Our timeline</code> 아래의 각 <code>article class="event"</code> 내용을 수정하면 바뀌어요.</p>
+  </section>
+
+  <section class="paper section" id="wish">
+    <div class="section-head"><div><div class="eyebrow">make a little wish</div><h2>Stars & wishes</h2></div><p class="small">별을 누르고 마음을 남겨 보세요.</p></div>
+    <div class="grid-2">
+      <div class="wish-area">
+        <button class="btn" id="starButton" type="button" style="width:100%;padding:22px;font-size:1.15rem;background:#829ed5;box-shadow:0 4px 0 #637eaf">✦ tap the star ✦</button>
+        <p class="small" id="starMessage" style="text-align:center;margin-bottom:0">별을 누르면 작은 응원 문구가 나타나요.</p>
+        <label for="wishName">이름 또는 닉네임 (선택)</label><input id="wishName" maxlength="24" placeholder="예: 러부단">
+        <label for="wishText">LIYU에게 전하고 싶은 소원</label><textarea id="wishText" maxlength="240" placeholder="늘 건강하고 행복하기를!"></textarea>
+        <button class="btn" id="addWish" type="button" style="margin-top:12px;width:100%">소원 카드 남기기</button>
+        <p class="small">소원은 현재 사용 중인 브라우저에만 저장돼요. 다른 방문자와 공유되지는 않아요.</p>
+      </div>
+      <div><div class="eyebrow">wish collection</div><div id="wishList" class="wish-list"><div class="wish-card"><strong>little star</strong><p>오늘도 당신의 하루가 반짝이기를 ✦</p></div></div></div>
+    </div>
+  </section>
+
+  <section class="paper section" id="memories">
+    <div class="section-head"><div><div class="eyebrow">photos & letters</div><h2>Pieces of you</h2></div><p class="small">사진과 편지를 모아 둔 작은 페이지</p></div>
+    <div class="photo-grid">
+      <figure class="mini-polaroid" style="--r:-3deg"><div class="mini-photo" style="--c1:#c5dcff;--c2:#f4dceb">PHOTO<br>01</div><figcaption>the first page</figcaption></figure>
+      <figure class="mini-polaroid" style="--r:2deg"><div class="mini-photo" style="--c1:#fff0b8;--c2:#f7d9e6">PHOTO<br>02</div><figcaption>a golden moment</figcaption></figure>
+      <figure class="mini-polaroid" style="--r:-1deg"><div class="mini-photo" style="--c1:#d8d0ff;--c2:#cce9e6">PHOTO<br>03</div><figcaption>stay in memory</figcaption></figure>
+    </div>
+    <div class="upload-note">사진을 넣으려면 코드에서 <code>PHOTO 01</code> 같은 <code>div class="mini-photo"</code>를 찾아, 아래처럼 이미지 태그로 바꾸면 돼요:<br><code>&lt;img src="images/photo1.jpg" alt="LIYU 사진" style="width:100%;height:100%;object-fit:cover"&gt;</code><br>사진 파일은 사이트 폴더 안에 <code>images</code> 폴더를 만들어 넣어 주세요. 공개 전에 사진 사용 권한도 확인해 주세요.</div>
+    <div class="grid-2" style="margin-top:24px">
+      <article class="letter"><div class="letter-title">Dear LIYU,</div><p>당신이 보여 준 순간들을 오래 기억하고 싶어서 이 작은 페이지를 만들었어요.
+
+바쁜 날에도 당신이 좋아하는 일을 하며 웃을 수 있기를, 그리고 당신의 하루에도 다정한 순간이 많기를 바라요.
+
+언제나 건강하고 행복하세요. 작은 별처럼 멀리서도 응원할게요.</p><p style="text-align:right;font-family:Georgia,serif;font-style:italic">with love, a fan ♡</p></article>
+      <article class="letter" style="background:#f1efff;border-color:#e1dafb"><div class="letter-title">A note to remember</div><p>이 공간에는 팬 프로젝트의 의미, 생일 카페 안내, 이벤트 일정이나 전하고 싶은 말을 자유롭게 적어 보세요.
+
+제목과 본문은 HTML 안의 이 편지 문단을 수정하면 바뀝니다.</p><p style="text-align:right;font-family:Georgia,serif;font-style:italic">keep this little memory ✦</p></article>
+    </div>
+  </section>
+  <footer class="footer">MADE WITH LOVE FOR LIYU<br>fan-made project · not an official website<br><a href="#home">back to top ↑</a></footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const wishes = [
+    "오늘도 당신의 하루가 반짝이기를 ✦",
+    "좋아하는 일들로 마음이 가득 차기를 ♡",
+    "건강하고 행복한 날들이 이어지기를",
+    "당신이 건넨 웃음만큼 큰 행복이 돌아오기를 ✧",
+    "언제나 당신다운 속도로 빛나기를"
+  ];
+  let wishIndex = 0;
+  let targetDate = new Date("2027-01-02T00:00:00");
+  function toast(message) {
+    const el = $("toast"); el.textContent = message; el.classList.add("show");
+    window.setTimeout(() => el.classList.remove("show"), 2300);
+  }
+  function sparkle(x, y) {
+    const s = document.createElement("span"); s.className = "sparkle"; s.textContent = "✦";
+    s.style.left = x + "px"; s.style.top = y + "px"; document.body.appendChild(s);
+    window.setTimeout(() => s.remove(), 950);
+  }
+  $("starButton").addEventListener("click", (e) => {
+    wishIndex = (wishIndex + 1) % wishes.length;
+    $("starMessage").textContent = wishes[wishIndex];
+    sparkle(e.clientX, e.clientY); toast("작은 소원이 별에 도착했어요 ✦");
+  });
+  $("addWish").addEventListener("click", () => {
+    const text = $("wishText").value.trim();
+    if (!text) { toast("먼저 소원을 적어 주세요."); $("wishText").focus(); return; }
+    const name = $("wishName").value.trim() || "little star";
+    const card = document.createElement("div"); card.className = "wish-card";
+    const strong = document.createElement("strong"); strong.textContent = name;
+    const p = document.createElement("p"); p.textContent = text;
+    card.append(strong, p); $("wishList").prepend(card);
+    try {
+      const saved = JSON.parse(localStorage.getItem("liyu-wishes") || "[]");
+      saved.unshift({name, text}); localStorage.setItem("liyu-wishes", JSON.stringify(saved.slice(0, 20)));
+    } catch (_) {}
+    $("wishText").value = ""; toast("소원 카드를 남겼어요 ♡");
+  });
+  function restoreWishes() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("liyu-wishes") || "[]");
+      saved.reverse().forEach(({name, text}) => {
+        const card = document.createElement("div"); card.className = "wish-card";
+        const strong = document.createElement("strong"); strong.textContent = name || "little star";
+        const p = document.createElement("p"); p.textContent = text || "";
+        card.append(strong, p); $("wishList").prepend(card);
+      });
+    } catch (_) {}
+  }
+  function updateCountdown() {
+    const now = new Date(); let diff = targetDate.getTime() - now.getTime();
+    if (diff < 0) {
+      $("countdownMessage").textContent = "오늘은 설정한 날짜가 지났어요. 다음 생일 날짜를 선택해 주세요.";
+      ["days","hours","minutes","seconds"].forEach(id => $(id).textContent = "0"); return;
+    }
+    $("days").textContent = Math.floor(diff / 86400000);
+    $("hours").textContent = Math.floor(diff % 86400000 / 3600000);
+    $("minutes").textContent = Math.floor(diff % 3600000 / 60000);
+    $("seconds").textContent = Math.floor(diff % 60000 / 1000);
+  }
+  $("saveBirthday").addEventListener("click", () => {
+    const val = $("birthday").value;
+    if (!val) { toast("날짜를 선택해 주세요."); return; }
+    targetDate = new Date(val + "T00:00:00");
+    try { localStorage.setItem("liyu-birthday", val); } catch (_) {}
+    updateCountdown(); toast("카운트다운 날짜를 적용했어요.");
+  });
+  try {
+    const savedDate = localStorage.getItem("liyu-birthday");
+    if (savedDate) { $("birthday").value = savedDate; targetDate = new Date(savedDate + "T00:00:00"); }
+  } catch (_) {}
+  restoreWishes(); updateCountdown(); window.setInterval(updateCountdown, 1000);
+})();
+</script>
+</body>
+</html>
